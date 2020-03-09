@@ -11,4 +11,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.el-cascader-menu {
+  height: 300px;
+}
+</style>

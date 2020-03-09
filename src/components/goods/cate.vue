@@ -91,7 +91,6 @@
           <!-- options 用来指定数据源 -->
           <!-- props 用来指定配置对象 -->
           <el-cascader
-            expand-trigger="hover"
             :options="parentCateList"
             :props="cascaderProps"
             v-model="selectedKeys"
@@ -173,6 +172,7 @@ export default {
       parentCateList: [],
       // 指定级联选择器的配置对象
       cascaderProps: {
+        expandTrigger: 'hover',
         value: 'cat_id',
         label: 'cat_name',
         children: 'children'
@@ -228,7 +228,7 @@ export default {
         return this.$message.error('获取父级分类数据失败！')
       }
 
-      console.log(res.data)
+      // console.log(res.data)
       this.parentCateList = res.data
     },
     // 选择项发生变化触发这个函数
