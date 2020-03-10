@@ -18,3 +18,15 @@ body,
   font-size: 12px;
   margin-top: 20px;
 }
+.el-pagination {
+  margin: 20px 0;
+}
+.el-steps {
+  margin: 15px 0;
+}
+.el-step__title {
+  font-size: 13px;
+}
+.ql-editor {
+  height: 200px !important;
+}
