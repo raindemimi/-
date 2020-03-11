@@ -73,6 +73,36 @@
       >
       </el-pagination>
     </el-card>
+    <!-- 修改地址的对话框 -->
+    <el-dialog
+      title="修改地址"
+      :visible.sync="addressVisible"
+      width="50%"
+      @close="addressDialogClosed"
+    >
+      <el-form
+        :model="addressForm"
+        :rules="addressFormRules"
+        ref="addressFormRef"
+        label-width="100px"
+      >
+        <el-form-item label="省市区/县" prop="address1">
+          <el-cascader
+            :options="cityData"
+            v-model="addressForm.address1"
+          ></el-cascader>
+        </el-form-item>
+        <el-form-item label="详细地址" prop="address2">
+          <el-input v-model="addressForm.address2"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="addressVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addressVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
     <!-- 展示物流进度的对话框 -->
     <el-dialog title="物流进度" :visible.sync="progressVisible" width="50%">
       <!-- 时间线 -->
