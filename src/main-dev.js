@@ -15,27 +15,29 @@ import NProgress from 'nprogress'
 
 // 配置axios
 import axios from 'axios'
-// axios默认的请求方式,可以自己设置
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 // 请求的根路径
-axios.defaults.baseURL = '/api/'
-// 表示跨域请求时是否需要使用凭证
-// axios.defaults.withCredentials = true
+axios.defaults.baseURL = '/api'
 
 // console.log(axios)
 // 通过 axios 请求拦截器添加 token，保证拥有获取数据的权限
 // request 时，展示进度条 NProgress.start()
 axios.interceptors.request.use(config => {
+  // const api = '/api/'
+  // config.url = api + config.url
   NProgress.start()
   // 为请求头字段，添加 Authorization 属性，并且值为 token 值
   config.headers.Authorization = window.sessionStorage.getItem('token')
   // 最后必须 return
   return config
+}, err => {
+  return Promise.reject(err)
 })
 // Response 时，隐藏进度条 NProgress.done()
 axios.interceptors.response.use(config => {
   NProgress.done()
   return config
+}, err => {
+  return Promise.reject(err)
 })
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

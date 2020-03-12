@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugins/element.js'
+// import './plugins/element.js'
 // 导入图标库
 import './assets/fonts/iconfont.css'
 // 导入全局样式
@@ -9,19 +9,17 @@ import './assets/css/global.css'
 import treeTable from 'vue-table-with-tree-grid'
 // 导入富文本编辑器
 import VueQuillEditor from 'vue-quill-editor'
-
+// // require styles 导入富文本编辑器样式
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 // 导入 NProgress 包对应的JS和CSS
 import NProgress from 'nprogress'
-
+// import 'nprogress/nprogress.css'
 // 配置axios
 import axios from 'axios'
-// axios默认的请求方式,可以自己设置
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 // 请求的根路径
-axios.defaults.baseURL = '/api/'
-// 表示跨域请求时是否需要使用凭证
-// axios.defaults.withCredentials = true
-
+axios.defaults.baseURL = '/api'
 // console.log(axios)
 // 通过 axios 请求拦截器添加 token，保证拥有获取数据的权限
 // request 时，展示进度条 NProgress.start()

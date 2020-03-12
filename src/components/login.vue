@@ -6,27 +6,14 @@
         <img src="../assets/logo.png" alt="logo图片加载失败" />
       </div>
       <!-- 表单区域 -->
-      <el-form
-        ref="loginFormRef"
-        label-width="0px"
-        class="form"
-        :model="loginForm"
-        :rules="loginFormRules"
-      >
+      <el-form ref="loginFormRef" label-width="0px" class="form" :model="loginForm" :rules="loginFormRules">
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input
-            v-model="loginForm.username"
-            prefix-icon="iconfont icon-user"
-          />
+          <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user" />
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input
-            v-model="loginForm.password"
-            prefix-icon="iconfont icon-3702mima"
-            type="password"
-          />
+          <el-input v-model="loginForm.password" prefix-icon="iconfont icon-3702mima" type="password" />
         </el-form-item>
         <el-form-item class="btns">
           <el-button type="primary" @click="login">
@@ -62,24 +49,26 @@ export default {
         password: [
           { required: true, message: '请输入登录密码', trigger: 'blur' },
           // eslint-disable-next-line quotes
-          { min: 6, max: 15, message: "长度在 6 到 15 个字符", trigger: "blur" }
+          { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
     // 为重置按钮添加重置方法
-    reset () {
-      console.log(this)
+    reset() {
+      // console.log(this)
       this.$refs.loginFormRef.resetFields()
     },
     // 为登录按钮添加预校验方法
-    login () {
+    login() {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
+        console.log(res.data)
         if (res.meta.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
+
         // 1.将登录成功之后的 token 保存到客户端的 sessionStorage 中
         window.sessionStorage.setItem('token', res.data.token)
         // 1.1 项目中出了登录之外的其他 api 接口，必须登录之后才可以访问
